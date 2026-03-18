@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JustStreamIt - Vidéos à la demande</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo-container">
+        <img src="logo.png" alt="JustStreamIt Logo" />
+        <h1>Vidéos à la demande</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Meilleur film -->
+      <section class="hero-section">
+        <h2>Meilleur film</h2>
+        <article class="featured-movie">
+          <figure>
+            <img src="" alt="Affiche du meilleur film" />
+          </figure>
+          <div class="movie-details">
+            <h3>Titre du film</h3>
+            <p>Résumé du film...</p>
+            <button class="btn-details">Détails</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Films les mieux notés -->
+      <section class="movie-grid-section">
+        <h2>Films les mieux notés</h2>
+        <div class="movie-grid">
+          <!-- Template figure pour JS -->
+          <figure class="movie-card">
+            <img src="" alt="Affiche film" />
+            <button class="btn-details">Détails</button>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Catégorie 1 -->
+      <section class="category-section">
+        <h2>Catégorie 1</h2>
+        <div class="movie-grid">
+          <!-- Template figure pour JS -->
+          <figure class="movie-card">
+            <img src="" alt="Affiche film" />
+            <button class="btn-details">Détails</button>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Catégorie 2 -->
+      <section class="category-section">
+        <h2>Catégorie 2</h2>
+        <div class="movie-grid">
+          <!-- Template figure pour JS -->
+          <figure class="movie-card">
+            <img src="" alt="Affiche film" />
+            <button class="btn-details">Détails</button>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Autres catégories - Famille -->
+      <section class="filter-section">
+        <div class="filter-controls">
+          <h2>Autres:</h2>
+          <select id="category-select-famille" name="categories">
+            <option value="action">Films d'action</option>
+            <option value="comedies">Comédies</option>
+            <option value="famille" selected>Famille</option>
+            <option value="fantasy">Films de fantasy</option>
+            <option value="horror">Films d'horreur</option>
+            <option value="scifi">Science-fiction</option>
+            <option value="western">Westerns</option>
+          </select>
+        </div>
+        <div class="movie-grid">
+          <!-- Template figure pour JS -->
+          <figure class="movie-card">
+            <img src="" alt="Affiche film" />
+            <button class="btn-details">Détails</button>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Autres catégories - Comédies -->
+      <section class="filter-section">
+        <div class="filter-controls">
+          <h2>Autres:</h2>
+          <select id="category-select-comedies" name="categories">
+            <option value="action">Films d'action</option>
+            <option value="comedies" selected>Comédies</option>
+            <option value="famille">Famille</option>
+            <option value="fantasy">Films de fantasy</option>
+            <option value="horror">Films d'horreur</option>
+            <option value="scifi">Science-fiction</option>
+            <option value="western">Westerns</option>
+          </select>
+        </div>
+        <div class="movie-grid">
+          <!-- Template figure pour JS -->
+          <figure class="movie-card">
+            <img src="" alt="Affiche film" />
+            <button class="btn-details">Détails</button>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal (squelette caché) -->
+    <dialog class="modal">
+      <div class="modal-content">
+        <div class="modal-top">
+          <div class="modal-meta">
+            <h3 class="modal-title">Titre</h3>
+            <p class="modal-year-genre">1998 - Comedy, Crime, Sport</p>
+            <p class="modal-rating-duration">PG-13 - 117 minutes (USA / UK)</p>
+            <p class="modal-score">IMDB score: 8.1/10</p>
+            <p class="modal-boxoffice">Recettes au box-office: $48.2m</p>
+            <p class="modal-director-label">Réalisé par:</p>
+            <p class="modal-director">Joel Cohen, Ethan Cohen</p>
+          </div>
+          <figure class="modal-figure">
+            <img src="" alt="Affiche film" />
+          </figure>
+        </div>
+        <p class="modal-summary">Résumé du film...</p>
+        <p class="modal-actors-label">Avec:</p>
+        <p class="modal-actors">Liste des acteurs</p>
+        <button class="modal-close">Fermer</button>
+      </div>
+    </dialog>
+  </body>
+</html>
