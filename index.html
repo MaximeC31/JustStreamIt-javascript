@@ -4,97 +4,429 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JustStreamIt - Vidéos à la demande</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Oswald', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
   </head>
   <body>
-    <header class="main-header">
-      <div class="logo-container">
-        <img src="logo.png" alt="JustStreamIt Logo" />
-        <h1>Vidéos à la demande</h1>
+    <header class="p-6 max-w-screen-xl mx-auto">
+      <div class="bg-slate-500 flex items-center gap-6 px-6 py-4 border border-black">
+        <img src="./assets/logo.svg" alt="JustStreamIt Logo" class="w-20 h-20" />
+        <h1 class="text-white text-3xl font-light">Vidéos à la demande</h1>
       </div>
     </header>
 
-    <main class="container">
+    <main>
       <!-- Meilleur film -->
-      <section class="hero-section">
-        <h2>Meilleur film</h2>
-        <article class="featured-movie">
-          <figure>
-            <img src="" alt="Affiche du meilleur film" />
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <h2 class="text-4xl font-semibold mb-4">Meilleur film</h2>
+        <article class="items-start border-4 border-black bg-white p-6 flex gap-6">
+          <figure class="w-1/3">
+            <img
+              src="./assets/img-test.png"
+              alt="Affiche du meilleur film"
+              class="h-auto object-cover max-h-80 w-full"
+            />
           </figure>
-          <div class="movie-details">
-            <h3>Titre du film</h3>
-            <p>Résumé du film...</p>
-            <button class="btn-details">Détails</button>
+          <div class="w-2/3 flex flex-col justify-center gap-6">
+            <h3 class="text-4xl font-semibold">Titre du film</h3>
+            <p class="text-2xl font-extralight">Résumé du film...</p>
+            <button class="bg-red-600 text-white rounded-full px-8 py-2 self-end">Détails</button>
           </div>
         </article>
       </section>
 
       <!-- Films les mieux notés -->
-      <section class="movie-grid-section">
-        <h2>Films les mieux notés</h2>
-        <div class="movie-grid">
-          <!-- Template figure pour JS -->
-          <figure class="movie-card">
-            <img src="" alt="Affiche film" />
-            <button class="btn-details">Détails</button>
-          </figure>
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <h2 class="text-5xl font-semibold text-black mb-4">Films les mieux notés</h2>
+        <div class="py-4">
+          <div class="grid grid-cols-3 gap-6">
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button
+                  class="top-1/4 right-4 bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end"
+                >
+                  Détails
+                </button>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       <!-- Catégorie 1 -->
-      <section class="category-section">
-        <h2>Catégorie 1</h2>
-        <div class="movie-grid">
-          <!-- Template figure pour JS -->
-          <figure class="movie-card">
-            <img src="" alt="Affiche film" />
-            <button class="btn-details">Détails</button>
-          </figure>
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <h2 class="text-5xl font-semibold text-black mb-4">Catégorie 1</h2>
+        <div class="py-4">
+          <div class="grid grid-cols-3 gap-6">
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       <!-- Catégorie 2 -->
-      <section class="category-section">
-        <h2>Catégorie 2</h2>
-        <div class="movie-grid">
-          <!-- Template figure pour JS -->
-          <figure class="movie-card">
-            <img src="" alt="Affiche film" />
-            <button class="btn-details">Détails</button>
-          </figure>
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <h2 class="text-5xl font-semibold text-black mb-4">Catégorie 2</h2>
+        <div class="py-4">
+          <div class="grid grid-cols-3 gap-6">
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
-      <!-- Autres catégories - Famille -->
-      <section class="filter-section">
-        <div class="filter-controls">
-          <h2>Autres:</h2>
-          <select id="category-select-famille" name="categories">
-            <option value="action">Films d'action</option>
+      <!-- Autres catégories - Films d'action -->
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <div class="flex items-center gap-4 mb-4">
+          <h2 class="text-5xl font-semibold text-black">Autres :</h2>
+          <select class="border-2 border-black px-4 py-2 text-xl cursor-pointer">
+            <option value="action" selected>Films d'action</option>
             <option value="comedies">Comédies</option>
-            <option value="famille" selected>Famille</option>
+            <option value="famille">Famille</option>
             <option value="fantasy">Films de fantasy</option>
             <option value="horror">Films d'horreur</option>
             <option value="scifi">Science-fiction</option>
             <option value="western">Westerns</option>
           </select>
         </div>
-        <div class="movie-grid">
-          <!-- Template figure pour JS -->
-          <figure class="movie-card">
-            <img src="" alt="Affiche film" />
-            <button class="btn-details">Détails</button>
-          </figure>
+        <div class="py-4">
+          <div class="grid grid-cols-3 gap-6">
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       <!-- Autres catégories - Comédies -->
-      <section class="filter-section">
-        <div class="filter-controls">
-          <h2>Autres:</h2>
-          <select id="category-select-comedies" name="categories">
+      <section class="p-6 max-w-screen-xl mx-auto">
+        <div class="flex items-center gap-4 mb-4">
+          <h2 class="text-5xl font-semibold text-black">Autres :</h2>
+          <select class="border-2 border-black px-4 py-2 text-xl cursor-pointer">
             <option value="action">Films d'action</option>
             <option value="comedies" selected>Comédies</option>
             <option value="famille">Famille</option>
@@ -104,37 +436,118 @@
             <option value="western">Westerns</option>
           </select>
         </div>
-        <div class="movie-grid">
-          <!-- Template figure pour JS -->
-          <figure class="movie-card">
-            <img src="" alt="Affiche film" />
-            <button class="btn-details">Détails</button>
-          </figure>
+        <div class="py-4">
+          <div class="grid grid-cols-3 gap-6">
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+            <figure class="relative group cursor-pointer">
+              <img
+                src="./assets/img-test.png"
+                alt="Affiche film"
+                class="w-full object-cover transition-all duration-300 aspect-square"
+              />
+              <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+                <p class="text-white font-semibold text-2xl">Titre</p>
+                <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
+                  Détails
+                </button>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
     </main>
 
     <!-- Modal (squelette caché) -->
-    <dialog class="modal">
-      <div class="modal-content">
-        <div class="modal-top">
-          <div class="modal-meta">
-            <h3 class="modal-title">Titre</h3>
-            <p class="modal-year-genre">1998 - Comedy, Crime, Sport</p>
-            <p class="modal-rating-duration">PG-13 - 117 minutes (USA / UK)</p>
-            <p class="modal-score">IMDB score: 8.1/10</p>
-            <p class="modal-boxoffice">Recettes au box-office: $48.2m</p>
-            <p class="modal-director-label">Réalisé par:</p>
-            <p class="modal-director">Joel Cohen, Ethan Cohen</p>
+    <dialog class="fixed inset-0 bg-black/50 flex w-full h-full p-8 justify-center items-center">
+      <div class="bg-white border-4 border-black p-8 max-w-3xl w-full">
+        <div class="flex gap-6 mb-6">
+          <div class="w-2/3 flex flex-col gap-6">
+            <h3 class="text-5xl font-bold">Titre</h3>
+            <div>
+              <p class="font-bold">1998 - Comedy, Crime, Sport</p>
+              <p class="font-bold">PG-13 - 117 minutes (USA / UK)</p>
+              <p class="font-bold">IMDB score: 8.1/10</p>
+              <p class="font-bold">Recettes au box-office: $48.2m</p>
+            </div>
+            <div>
+              <p class="font-bold">Réalisé par:</p>
+              <p>Joel Cohen, Ethan Cohen</p>
+            </div>
           </div>
-          <figure class="modal-figure">
-            <img src="" alt="Affiche film" />
+          <figure class="w-1/3">
+            <img src="./assets/img-test.png" alt="Affiche film" class="w-full max-h-80" />
           </figure>
         </div>
-        <p class="modal-summary">Résumé du film...</p>
-        <p class="modal-actors-label">Avec:</p>
-        <p class="modal-actors">Liste des acteurs</p>
-        <button class="modal-close">Fermer</button>
+        <p class="mb-6">Résumé du film...</p>
+        <p class="font-bold">Avec:</p>
+        <p class="mb-8">Liste des acteurs</p>
+        <div class="flex justify-center">
+          <button class="bg-red-600 text-white rounded-full px-16 py-3 text-xl">Fermer</button>
+        </div>
       </div>
     </dialog>
   </body>
