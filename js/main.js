@@ -1,9 +1,20 @@
-import { getBestMovie } from './api.js';
-import { displayBestMovie } from './ui.js';
+import { getBestMovie, getTopRatedMovies } from "./api.js";
+import { displayBestMovie, displayTopRatedMovies } from "./ui.js";
 
 async function init() {
-  const bestMovie = await getBestMovie();
-  displayBestMovie(bestMovie);
+  try {
+    const bestMovie = await getBestMovie();
+    displayBestMovie(bestMovie);
+  } catch (error) {
+    console.error("Erreur meilleur film :", error);
+  }
+
+  try {
+    const topRatedMovies = await getTopRatedMovies();
+    displayTopRatedMovies(topRatedMovies);
+  } catch (error) {
+    console.error("Erreur films mieux notés :", error);
+  }
 }
 
 init();

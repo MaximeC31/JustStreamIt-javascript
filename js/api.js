@@ -10,3 +10,9 @@ export async function getBestMovie() {
 
   return movie;
 }
+
+export async function getTopRatedMovies() {
+  const response = await fetch(`${BASE_URL}/titles/?sort_by=-imdb_score&page_size=6`);
+  const data = await response.json();
+  return data.results;
+}
