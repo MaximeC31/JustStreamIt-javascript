@@ -1,5 +1,5 @@
-import { getBestMovie, getTopRatedMovies } from "./api.js";
-import { displayBestMovie, displayTopRatedMovies } from "./ui.js";
+import { getBestMovie, getTopRatedMovies, getMoviesByGenre } from "./api.js";
+import { displayBestMovie, displayMovies } from "./ui.js";
 
 async function init() {
   try {
@@ -11,9 +11,16 @@ async function init() {
 
   try {
     const topRatedMovies = await getTopRatedMovies();
-    displayTopRatedMovies(topRatedMovies);
+    displayMovies(topRatedMovies, '[data-top-movies="grid"]');
   } catch (error) {
     console.error("Erreur films mieux notés :", error);
+  }
+
+  try {
+    const mysteryMovies = await getMoviesByGenre("Mystery");
+    displayMovies(mysteryMovies, '[data-category-1="grid"]');
+  } catch (error) {
+    console.error("Erreur Mystery :", error);
   }
 }
 
