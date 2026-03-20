@@ -9,8 +9,6 @@ export function displayMovies(movies, gridSelector) {
   const template = document.querySelector("#movie-template");
   const grid = document.querySelector(gridSelector);
 
-  grid.innerHTML = "";
-
   movies.forEach((movie) => {
     const clone = template.content.cloneNode(true);
     clone.querySelector("img").src = movie.image_url;

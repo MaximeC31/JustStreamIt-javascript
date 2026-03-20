@@ -18,7 +18,9 @@ export async function getTopRatedMovies() {
 }
 
 export async function getMoviesByGenre(genre) {
-  const response = await fetch(`${BASE_URL}/titles/?genre=${genre}&sort_by=-imdb_score&page_size=6`);
+  const response = await fetch(
+    `${BASE_URL}/titles/?genre=${genre}&sort_by=-imdb_score&page_size=6`
+  );
   const data = await response.json();
   return data.results;
 }
