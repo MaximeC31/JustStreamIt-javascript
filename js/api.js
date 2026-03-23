@@ -14,6 +14,7 @@ export async function getBestMovie() {
 export async function getTopRatedMovies() {
   const response = await fetch(`${BASE_URL}/titles/?sort_by=-imdb_score&page_size=6`);
   const data = await response.json();
+
   return data.results;
 }
 
@@ -22,5 +23,20 @@ export async function getMoviesByGenre(genre) {
     `${BASE_URL}/titles/?genre=${genre}&sort_by=-imdb_score&page_size=6`
   );
   const data = await response.json();
+
   return data.results;
+}
+
+export async function getAllGenres() {
+  const genres = [];
+  let url = `${BASE_URL}/genres/`;
+
+  while (url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    genres.push(...data.results);
+    url = data.next;
+  }
+
+  return genres;
 }

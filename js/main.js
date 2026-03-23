@@ -1,5 +1,23 @@
-import { getBestMovie, getTopRatedMovies, getMoviesByGenre } from './api.js';
-import { displayBestMovie, displayMovies } from './ui.js';
+import { getBestMovie, getTopRatedMovies, getMoviesByGenre, getAllGenres } from './api.js';
+import { displayBestMovie, displayMovies, populateGenres } from './ui.js';
+
+async function setupGenreSection(allGenres, selectSelector, gridSelector, defaultGenre) {
+  const select = document.querySelector(selectSelector);
+  const grid = document.querySelector(gridSelector);
+
+  populateGenres(allGenres, selectSelector);
+  select.value = defaultGenre;
+
+  const movies = await getMoviesByGenre(defaultGenre);
+  displayMovies(movies, gridSelector);
+
+  select.addEventListener('change', async (e) => {
+    grid.innerHTML = '';
+    const selectedGenre = e.target.value;
+    const movies = await getMoviesByGenre(selectedGenre);
+    displayMovies(movies, gridSelector);
+  });
+}
 
 async function init() {
   try {
@@ -28,6 +46,26 @@ async function init() {
     displayMovies(actionMovies, '[data-category-2="grid"]');
   } catch (error) {
     console.error('Erreur Action :', error);
+  }
+
+  try {
+    const allGenres = await getAllGenres();
+
+    await setupGenreSection(
+      allGenres,
+      '[data-genre="select-1"]',
+      '[data-category-3="grid"]',
+      'Family'
+    );
+
+    await setupGenreSection(
+      allGenres,
+      '[data-genre="select-2"]',
+      '[data-category-4="grid"]',
+      'Comedy'
+    );
+  } catch (error) {
+    console.error('Erreur sections genres :', error);
   }
 }
 
