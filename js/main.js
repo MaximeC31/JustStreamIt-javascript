@@ -1,72 +1,81 @@
-import { getBestMovie, getTopRatedMovies, getMoviesByGenre, getAllGenres } from './api.js';
-import { displayBestMovie, displayMovies, populateGenres } from './ui.js';
+import * as api from './api.js';
+import * as ui from './ui.js';
 
-async function setupGenreSection(allGenres, selectSelector, gridSelector, defaultGenre) {
-  const select = document.querySelector(selectSelector);
-  const grid = document.querySelector(gridSelector);
+async function loadBestMovie() {
+  try {
+    const movie = await api.getBestMovie();
+    ui.displayBestMovie(movie);
+  } catch (e) {
+    console.error('Best Movie:', e);
+  }
+}
 
-  populateGenres(allGenres, selectSelector);
-  select.value = defaultGenre;
+async function loadTopRated() {
+  try {
+    const movies = await api.getTopRatedMovies();
+    ui.displayMovies(movies, '[data-grid-top-rated]');
+  } catch (e) {
+    console.error('Top Rated:', e);
+  }
+}
 
-  const movies = await getMoviesByGenre(defaultGenre);
-  displayMovies(movies, gridSelector);
+async function loadStaticCategories() {
+  const categories = [
+    { genre: 'Mystery', selector: '[data-grid-mystery]' },
+    { genre: 'Action', selector: '[data-grid-action]' }
+  ];
 
-  select.addEventListener('change', async (e) => {
-    grid.innerHTML = '';
-    const selectedGenre = e.target.value;
-    const movies = await getMoviesByGenre(selectedGenre);
-    displayMovies(movies, gridSelector);
-  });
+  try {
+    await Promise.all(
+      categories.map(async (category) => {
+        try {
+          const movies = await api.getMoviesByGenre(category.genre);
+          ui.displayMovies(movies, category.selector);
+        } catch (e) {
+          console.error(`${category.genre}:`, e);
+        }
+      })
+    );
+  } catch (e) {
+    console.error('Static Categories:', e);
+  }
+}
+
+async function loadOtherSections() {
+  try {
+    const genres = await api.getAllGenres();
+    const sections = [
+      { selectQuery: '[data-select-dynamic-1]', gridQuery: '[data-grid-dynamic-1]' },
+      { selectQuery: '[data-select-dynamic-2]', gridQuery: '[data-grid-dynamic-2]' }
+    ];
+
+    await Promise.all(
+      sections.map(async (section) => {
+        const genreSelect = document.querySelector(section.selectQuery);
+        const movieGrid = document.querySelector(section.gridQuery);
+        const initialGenre = genreSelect.getAttribute('defaultValue');
+
+        ui.populateGenres(genres, section.selectQuery);
+        genreSelect.value = initialGenre;
+
+        const initialMovies = await api.getMoviesByGenre(initialGenre);
+        ui.displayMovies(initialMovies, section.gridQuery);
+
+        genreSelect.addEventListener('change', async (event) => {
+          movieGrid.innerHTML = '';
+          const selectedGenre = event.target.value;
+          const genreMovies = await api.getMoviesByGenre(selectedGenre);
+          ui.displayMovies(genreMovies, section.gridQuery);
+        });
+      })
+    );
+  } catch (error) {
+    console.error('Error loading other sections:', error);
+  }
 }
 
 async function init() {
-  try {
-    const bestMovie = await getBestMovie();
-    displayBestMovie(bestMovie);
-  } catch (error) {
-    console.error('Erreur meilleur film :', error);
-  }
-
-  try {
-    const topRatedMovies = await getTopRatedMovies();
-    displayMovies(topRatedMovies, '[data-top-movies="grid"]');
-  } catch (error) {
-    console.error('Erreur films mieux notés :', error);
-  }
-
-  try {
-    const mysteryMovies = await getMoviesByGenre('Mystery');
-    displayMovies(mysteryMovies, '[data-category-1="grid"]');
-  } catch (error) {
-    console.error('Erreur Mystery :', error);
-  }
-
-  try {
-    const actionMovies = await getMoviesByGenre('Action');
-    displayMovies(actionMovies, '[data-category-2="grid"]');
-  } catch (error) {
-    console.error('Erreur Action :', error);
-  }
-
-  try {
-    const allGenres = await getAllGenres();
-
-    await setupGenreSection(
-      allGenres,
-      '[data-genre="select-1"]',
-      '[data-category-3="grid"]',
-      'Family'
-    );
-
-    await setupGenreSection(
-      allGenres,
-      '[data-genre="select-2"]',
-      '[data-category-4="grid"]',
-      'Comedy'
-    );
-  } catch (error) {
-    console.error('Erreur sections genres :', error);
-  }
+  await Promise.all([loadBestMovie(), loadTopRated(), loadStaticCategories(), loadOtherSections()]);
 }
 
 init();
