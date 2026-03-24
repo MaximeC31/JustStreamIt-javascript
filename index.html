@@ -12,17 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Oswald', 'sans-serif']
-            }
-          }
-        }
-      };
-    </script>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -35,15 +25,15 @@
 
     <main>
       <!-- Meilleur film -->
-      <section class="p-6 max-w-screen-xl mx-auto">
+      <section data-section="best-movie" class="p-6 max-w-screen-xl mx-auto">
         <h2 class="text-4xl font-semibold mb-4">Meilleur film</h2>
         <article class="items-start border-4 border-black bg-white p-6 flex gap-6">
           <figure class="w-1/3">
-            <img src="" alt="" data-best-movie="img" class="h-auto object-cover max-h-80 w-full" />
+            <img src="" alt="" class="h-auto object-cover max-h-80 w-full" />
           </figure>
           <div class="w-2/3 flex flex-col justify-center gap-6">
-            <h3 data-best-movie="title" class="text-4xl font-semibold"></h3>
-            <p data-best-movie="description" class="text-2xl font-extralight"></p>
+            <h3 class="text-4xl font-semibold"></h3>
+            <p class="text-2xl font-extralight"></p>
             <button class="bg-red-600 text-white rounded-full px-8 py-2 self-end">Détails</button>
           </div>
         </article>
@@ -53,7 +43,7 @@
       <section class="p-6 max-w-screen-xl mx-auto">
         <h2 class="text-5xl font-semibold text-black mb-4">Films les mieux notés</h2>
         <div class="py-4">
-          <div data-grid-top-rated class="grid grid-cols-3 gap-6"></div>
+          <div data-grid="top-rated" class="grid grid-cols-3 gap-6"></div>
         </div>
       </section>
 
@@ -61,7 +51,7 @@
       <section class="p-6 max-w-screen-xl mx-auto">
         <h2 class="text-5xl font-semibold text-black mb-4">Mystery</h2>
         <div class="py-4">
-          <div data-grid-mystery class="grid grid-cols-3 gap-6"></div>
+          <div data-grid="mystery" class="grid grid-cols-3 gap-6"></div>
         </div>
       </section>
 
@@ -69,7 +59,7 @@
       <section class="p-6 max-w-screen-xl mx-auto">
         <h2 class="text-5xl font-semibold text-black mb-4">Action</h2>
         <div class="py-4">
-          <div data-grid-action class="grid grid-cols-3 gap-6"></div>
+          <div data-grid="action" class="grid grid-cols-3 gap-6"></div>
         </div>
       </section>
 
@@ -78,13 +68,13 @@
         <div class="flex items-center gap-4 mb-4">
           <h2 class="text-5xl font-semibold text-black">Autres :</h2>
           <select
-            data-select-dynamic-1
+            data-select="dynamic-1"
             class="border-2 border-black px-4 py-2 text-xl cursor-pointer"
             defaultValue="Family"
           ></select>
         </div>
         <div class="py-4">
-          <div data-grid-dynamic-1 class="grid grid-cols-3 gap-6"></div>
+          <div data-grid="dynamic-1" class="grid grid-cols-3 gap-6"></div>
         </div>
       </section>
 
@@ -93,43 +83,43 @@
         <div class="flex items-center gap-4 mb-4">
           <h2 class="text-5xl font-semibold text-black">Autres :</h2>
           <select
-            data-select-dynamic-2
+            data-select="dynamic-2"
             class="border-2 border-black px-4 py-2 text-xl cursor-pointer"
             defaultValue="Comedy"
           ></select>
         </div>
         <div class="py-4">
-          <div data-grid-dynamic-2 class="grid grid-cols-3 gap-6"></div>
+          <div data-grid="dynamic-2" class="grid grid-cols-3 gap-6"></div>
         </div>
       </section>
     </main>
 
-    <!-- Modal (squelette caché) -->
-    <dialog class="fixed bg-black/50 flex w-full h-full p-8 justify-center items-center">
-      <div class="bg-white border-4 border-black p-8 max-w-3xl w-full">
+    <!-- Modal -->
+    <dialog data-modal="movie-details" class="bg-white border-4 border-black p-0 max-w-3xl">
+      <div class="p-8">
         <div class="flex gap-6 mb-6">
           <div class="w-2/3 flex flex-col gap-6">
-            <h3 class="text-5xl font-bold">Titre</h3>
-            <div>
-              <p class="font-bold">1998 - Comedy, Crime, Sport</p>
-              <p class="font-bold">PG-13 - 117 minutes (USA / UK)</p>
-              <p class="font-bold">IMDB score: 8.1/10</p>
-              <p class="font-bold">Recettes au box-office: $48.2m</p>
+            <h3 class="text-5xl font-bold"></h3>
+            <div class="info">
+              <p class="font-bold"></p>
+              <p class="font-bold"></p>
+              <p class="font-bold"></p>
+              <p class="font-bold"></p>
             </div>
-            <div>
+            <div class="directors">
               <p class="font-bold">Réalisé par:</p>
-              <p>Joel Cohen, Ethan Cohen</p>
+              <p></p>
             </div>
           </div>
           <figure class="w-1/3">
-            <img src="./assets/img-test.png" alt="Affiche film" class="w-full max-h-80" />
+            <img src="" alt="Affiche film" class="w-full max-h-80" />
           </figure>
         </div>
-        <p class="mb-6">Résumé du film...</p>
+        <p class="description mb-6"></p>
         <p class="font-bold">Avec:</p>
-        <p class="mb-8">Liste des acteurs</p>
+        <p class="actors mb-8"></p>
         <div class="flex justify-center">
-          <button class="bg-red-600 text-white rounded-full px-16 py-3 text-xl">Fermer</button>
+          <button class="bg-red-600 text-white rounded-full px-8 py-2 text-xl">Fermer</button>
         </div>
       </div>
     </dialog>
@@ -137,8 +127,14 @@
     <!-- Template pour chaque films -->
     <template id="movie-template">
       <figure class="relative group cursor-pointer">
-        <img src="" alt="" class="w-full object-cover transition-all duration-300 aspect-square" />
-        <div class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50">
+        <img
+          src=""
+          alt=""
+          class="w-full object-cover transition-all duration-300 aspect-square cursor-default"
+        />
+        <div
+          class="absolute top-1/4 p-4 flex flex-col gap-4 w-full bg-black bg-opacity-50 cursor-default"
+        >
           <p class="text-white font-semibold text-2xl"></p>
           <button class="bg-gray-900 text-white rounded-full px-6 py-1 text-sm self-end">
             Détails

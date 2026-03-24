@@ -1,15 +1,18 @@
 const BASE_URL = 'http://localhost:8000/api/v1';
 
+export async function getMovieDetails(id) {
+  const response = await fetch(`${BASE_URL}/titles/${id}`);
+  if (!response.ok) throw new Error(`HTTP ${response.status} ${response.url}`);
+  return await response.json();
+}
+
 export async function getBestMovie() {
   const response = await fetch(`${BASE_URL}/titles/?sort_by=-imdb_score&page_size=1`);
   if (!response.ok) throw new Error(`HTTP ${response.status} ${response.url}`);
   const data = await response.json();
   const summary = data.results[0];
 
-  const detailResponse = await fetch(`${BASE_URL}/titles/${summary.id}`);
-  if (!detailResponse.ok) throw new Error(`HTTP ${detailResponse.status} ${detailResponse.url}`);
-
-  return await detailResponse.json();
+  return await getMovieDetails(summary.id);
 }
 
 export async function getTopRatedMovies() {
