@@ -59,19 +59,18 @@ async function loadOtherSections() {
   try {
     const genres = await api.getAllGenres();
     const sections = [
-      { selectQuery: '[data-select="dynamic-1"]', gridQuery: '[data-grid="dynamic-1"]' },
-      { selectQuery: '[data-select="dynamic-2"]', gridQuery: '[data-grid="dynamic-2"]' }
+      { selectQuery: '[data-select="dynamic-1"]', gridQuery: '[data-grid="dynamic-1"]', defaultGenre: 'Family' },
+      { selectQuery: '[data-select="dynamic-2"]', gridQuery: '[data-grid="dynamic-2"]', defaultGenre: 'Comedy' }
     ];
 
     await Promise.all(
       sections.map(async (section) => {
         const genreSelect = document.querySelector(section.selectQuery);
-        const initialGenre = genreSelect.getAttribute('defaultValue');
 
         ui.populateGenres(genres, section.selectQuery);
-        genreSelect.value = initialGenre;
+        genreSelect.value = section.defaultGenre;
 
-        const initialMovies = await api.getMoviesByGenre(initialGenre);
+        const initialMovies = await api.getMoviesByGenre(section.defaultGenre);
         ui.displayMovies(initialMovies, section.gridQuery, handleMovieClick);
 
         genreSelect.addEventListener('change', async (event) => {
