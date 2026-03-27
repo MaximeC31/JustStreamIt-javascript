@@ -39,7 +39,7 @@ export function displayMovies(movies, gridSelector, onMovieClick) {
     }
 
     setImageWithFallback(container.querySelector('img'), movie.image_url, movie.title);
-    container.querySelector('p').textContent = movie.title;
+    container.querySelector('h3').textContent = movie.title;
     container.querySelector('button').addEventListener('click', () => onMovieClick(movie.id));
     grid.appendChild(clone);
   });
