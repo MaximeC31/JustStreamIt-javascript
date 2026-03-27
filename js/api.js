@@ -10,6 +10,8 @@ export async function getBestMovie() {
   const response = await fetch(`${BASE_URL}/titles/?sort_by=-imdb_score&page_size=1`);
   if (!response.ok) throw new Error(`HTTP ${response.status} ${response.url}`);
   const data = await response.json();
+
+  if (!data.results || data.results.length === 0) throw new Error('No movies found');
   const summary = data.results[0];
 
   return await getMovieDetails(summary.id);

@@ -5,8 +5,8 @@ async function handleMovieClick(movieId) {
   try {
     const movie = await api.getMovieDetails(movieId);
     ui.displayMovieDetails(movie);
-  } catch (e) {
-    console.error('Movie Details:', e);
+  } catch (error) {
+    console.error('handleMovieClick Error:', error);
   }
 }
 
@@ -19,8 +19,8 @@ async function loadBestMovie() {
 
     const detailBtn = section.querySelector('button');
     detailBtn.addEventListener('click', () => handleMovieClick(movie.id));
-  } catch (e) {
-    console.error('Best Movie:', e);
+  } catch (error) {
+    console.error('loadBestMovie Error:', error);
   }
 }
 
@@ -28,8 +28,8 @@ async function loadTopRated() {
   try {
     const movies = await api.getTopRatedMovies();
     ui.displayMovies(movies, '[data-grid="top-rated"]', handleMovieClick);
-  } catch (e) {
-    console.error('Top Rated:', e);
+  } catch (error) {
+    console.error('loadTopRated Error:', error);
   }
 }
 
@@ -39,28 +39,32 @@ async function loadStaticCategories() {
     { genre: 'Action', selector: '[data-grid="action"]' }
   ];
 
-  try {
-    await Promise.all(
-      categories.map(async (category) => {
-        try {
-          const movies = await api.getMoviesByGenre(category.genre);
-          ui.displayMovies(movies, category.selector, handleMovieClick);
-        } catch (e) {
-          console.error(`${category.genre}:`, e);
-        }
-      })
-    );
-  } catch (e) {
-    console.error('Static Categories:', e);
-  }
+  await Promise.all(
+    categories.map(async (category) => {
+      try {
+        const movies = await api.getMoviesByGenre(category.genre);
+        ui.displayMovies(movies, category.selector, handleMovieClick);
+      } catch (error) {
+        console.error(`loadStaticCategories (${category.genre}) Error:`, error);
+      }
+    })
+  );
 }
 
 async function loadOtherSections() {
   try {
     const genres = await api.getAllGenres();
     const sections = [
-      { selectQuery: '[data-select="dynamic-1"]', gridQuery: '[data-grid="dynamic-1"]', defaultGenre: 'Family' },
-      { selectQuery: '[data-select="dynamic-2"]', gridQuery: '[data-grid="dynamic-2"]', defaultGenre: 'Comedy' }
+      {
+        selectQuery: '[data-select="dynamic-1"]',
+        gridQuery: '[data-grid="dynamic-1"]',
+        defaultGenre: 'Family'
+      },
+      {
+        selectQuery: '[data-select="dynamic-2"]',
+        gridQuery: '[data-grid="dynamic-2"]',
+        defaultGenre: 'Comedy'
+      }
     ];
 
     await Promise.all(
@@ -74,14 +78,18 @@ async function loadOtherSections() {
         ui.displayMovies(initialMovies, section.gridQuery, handleMovieClick);
 
         genreSelect.addEventListener('change', async (event) => {
-          const selectedGenre = event.target.value;
-          const genreMovies = await api.getMoviesByGenre(selectedGenre);
-          ui.displayMovies(genreMovies, section.gridQuery, handleMovieClick);
+          try {
+            const selectedGenre = event.target.value;
+            const genreMovies = await api.getMoviesByGenre(selectedGenre);
+            ui.displayMovies(genreMovies, section.gridQuery, handleMovieClick);
+          } catch (error) {
+            console.error(`loadOtherSections (change ${event.target.value}) Error:`, error);
+          }
         });
       })
     );
   } catch (error) {
-    console.error('Error loading other sections:', error);
+    console.error('loadOtherSections Error:', error);
   }
 }
 

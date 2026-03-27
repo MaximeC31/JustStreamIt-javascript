@@ -23,10 +23,21 @@ export function displayMovies(movies, gridSelector, onMovieClick) {
   const moreBtn = section.querySelector('[data-more-btn]');
 
   grid.innerHTML = '';
+  if (moreBtn) moreBtn.classList.remove('hidden');
 
-  movies.forEach((movie) => {
+  movies.forEach((movie, index) => {
     const clone = template.content.cloneNode(true);
     const container = clone.querySelector('figure');
+
+    switch (true) {
+      case index >= 4:
+        container.classList.add('hidden', 'lg:block');
+        break;
+      case index >= 2:
+        container.classList.add('hidden', 'md:block');
+        break;
+    }
+
     setImageWithFallback(container.querySelector('img'), movie.image_url, movie.title);
     container.querySelector('p').textContent = movie.title;
     container.querySelector('button').addEventListener('click', () => onMovieClick(movie.id));
@@ -35,7 +46,9 @@ export function displayMovies(movies, gridSelector, onMovieClick) {
 
   if (moreBtn) {
     moreBtn.onclick = () => {
-      grid.classList.remove('md:[&>*:nth-child(n+5)]:hidden');
+      grid
+        .querySelectorAll('.hidden')
+        .forEach((el) => el.classList.remove('hidden', 'lg:block', 'md:block'));
       moreBtn.classList.add('hidden');
     };
   }
@@ -55,13 +68,14 @@ export function displayMovieDetails(movie) {
   infoPs[1].textContent = `${movie.rated} - ${movie.duration} minutes (${movie.countries.join(' / ')})`;
   infoPs[2].textContent = `IMDB score: ${movie.imdb_score}/10`;
   const income = movie.worldwide_gross_income;
-  const formattedIncome = income ? `$${(income / 1000000).toLocaleString('en-US')}m` : 'N/A';
+  const formattedIncome =
+    income != null ? `$${(income / 1000000).toLocaleString('en-US')}m` : 'N/A';
   infoPs[3].textContent = `Recettes au box-office: ${formattedIncome}`;
 
   modal.querySelector('.directors p:last-child').textContent = movie.directors.join(', ');
   modal.querySelector('.description').textContent = movie.long_description || movie.description;
   modal.querySelector('.actors').textContent = movie.actors.join(', ');
-
+  document.body.style.overflow = 'hidden';
   modal.showModal();
 }
 
@@ -69,7 +83,10 @@ export function setupModal() {
   const modal = document.querySelector('[data-modal="movie-details"]');
   const closeBtn = modal.querySelectorAll('[data-close-modal]');
 
-  const closeModal = () => modal.close();
+  const closeModal = () => {
+    modal.close();
+    document.body.style.overflow = '';
+  };
 
   closeBtn.forEach((btn) => btn.addEventListener('click', closeModal));
 
